@@ -1,0 +1,349 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║         GUÍA DE ESTRUCTURA - PORTAFOLIO ISRAEL LÓPEZ HERNÁNDEZ            ║
+║                   Sistema de edición sin necesidad de ayuda                 ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+📁 ESTRUCTURA DE CARPETAS Y ARCHIVOS PRINCIPALES
+═════════════════════════════════════════════════════════════════════════════
+
+/app
+├── layout.tsx          → Contenedor principal. Define tema global, tipografía y metadatos.
+├── page.tsx            → PÁGINA DE INICIO. Aquí está tu perfil, foto, las 11 tarjetas de áreas, 
+│                          y sección destacada de After Music (al final).
+├── globals.css         → Estilos globales, colores, variables CSS, gradientes, animaciones.
+└── /areas/[slug]/page.tsx  → Página dinámica. Genera automáticamente una página para cada área.
+
+/components
+├── specialty-card.tsx  → Componente de las tarjetas interactivas (11 tarjetas de áreas).
+└── /ui/               → Componentes de UI de shadcn (botones, cards, etc.) - NO EDITAR.
+
+/public
+└── professional-portrait-israel-lopez-creative.jpg → TU FOTO DE PERFIL. Puedes cambiarla.
+
+═════════════════════════════════════════════════════════════════════════════
+
+📝 GUÍA DE EDICIÓN - ARCHIVOS PRINCIPALES
+═════════════════════════════════════════════════════════════════════════════
+
+1️⃣  EDITAR INFORMACIÓN PERSONAL (app/page.tsx)
+─────────────────────────────────────────────
+
+Busca estos elementos en app/page.tsx:
+
+✎ Tu nombre:
+   Línea: <h2 className="text-5xl md:text-6xl font-bold leading-tight">
+           Israel López <span className="gradient-text">Hernández</span>
+          </h2>
+   Cambiar: "Israel López" y "Hernández" por tu nombre.
+
+✎ Profesión/Subtítulo:
+   Línea: <p className="text-xl text-muted-foreground">Creativo Multidisciplinario</p>
+   Cambiar: "Creativo Multidisciplinario" por lo que quieras mostrar.
+
+✎ Descripción principal:
+   Busca: "Licenciado en Medios Interactivos..."
+   Edita todo el párrafo introductorio con tu información.
+
+✎ Años de experiencia:
+   Busca: <p className="text-3xl font-bold gradient-text">3+</p>
+   Cambiar: "3+" por tu cantidad de años.
+
+✎ Número de proyectos:
+   Busca: <p className="text-3xl font-bold gradient-text">25+</p>
+   Cambiar: "25+" por tu cantidad de proyectos.
+
+✎ Tu foto de perfil:
+   Busca: /professional-portrait-israel-lopez-creative.jpg
+   Reemplaza este archivo en /public con tu foto. O cambia la ruta en:
+   <Image src="/professional-portrait-israel-lopez-creative.jpg" ... />
+
+─────────────────────────────────────────────────────────────────────────────
+
+2️⃣  EDITAR LAS 11 ÁREAS PRINCIPALES (app/page.tsx)
+──────────────────────────────────────────────────
+
+En app/page.tsx, busca el array "specialties":
+
+   const specialties = [
+     {
+       id: "animacion-3d",                 ← ID único (no espacios, minúsculas, guiones)
+       title: "Animación 3D",              ← Título que se ve en la tarjeta
+       description: "Desarrollo de...",   ← Descripción pequeña (1-2 líneas)
+       icon: "🎭",                         ← Emoji (puedes cambiar a otro)
+     },
+     // Más áreas...
+   ]
+
+ORDEN ALFABÉTICO ACTUAL (11 áreas principales):
+   1. Animación 3D (animacion-3d)
+   2. Creación de Videojuegos (creacion-videojuegos)
+   3. Diseño Sonoro (diseno-sonoro)
+   4. Diseño Visual (diseno-visual)
+   5. Diseño Web (diseno-web)
+   6. Fotografía (fotografia)
+   7. Ilustraciones (ilustraciones)
+   8. Modelado 3D (modelado-3d)
+   9. Producción Audiovisual (produccion-audiovisual)
+   10. Producción Musical (produccion-musical)
+   11. Videomapping (videomapping)
+
+Para AGREGAR una nueva área:
+   1. Copia un objeto completo (ejemplo: animacion-3d)
+   2. Cambia id, title, description, icon
+   3. El id se DEBE usar en minúsculas y con guiones
+   4. Automáticamente se crea una página en /areas/id-del-area
+   5. Inserta en el lugar correcto para mantener ORDEN ALFABÉTICO
+
+Para EDITAR una área existente:
+   1. Busca el área en el array specialties
+   2. Cambia title, description e icon
+   3. El cambio se verá en la tarjeta de la página de inicio
+
+Para ELIMINAR una área:
+   1. Borra el objeto completo del array specialties
+   2. La tarjeta desaparecerá de la página (pero la página en /areas aún existe)
+
+IMPORTANTE: El "id" es crucial porque:
+   - Define la URL de la página (/areas/id-del-area)
+   - El contenido de esa página está en app/areas/[slug]/page.tsx en areaContent
+
+─────────────────────────────────────────────────────────────────────────────
+
+3️⃣  SECCIÓN ESPECIAL: AFTER MUSIC (app/page.tsx) - AL FINAL DE LA PÁGINA
+──────────────────────────────────────────────────────────────────────────
+
+After Music ahora está al final de la página, después de todas las 11 áreas de especialidad.
+
+Ubicación en orden: Perfil → About → Specialties → After Music → Footer
+
+✎ Cómo está estructurado:
+   - Título: "Mi Sello Discográfico"
+   - Heading: "After Music" (con gradient)
+   - Descripción: Párrafo completo sobre el sello
+   - Grid: 4 elementos de lo que incluye After Music
+   - Botón: "Ver Sello" que lleva a /areas/after-music
+
+✎ Para editar la sección:
+   Busca en app/page.tsx:
+   {/* After Music - Sello Especial */}
+
+   Puedes cambiar:
+   - Texto del párrafo de descripción
+   - Los 4 elementos en el grid (sustituye los strings en el array)
+   - Colores de fondo o estilos (pero mantén los efectos visuales)
+
+✎ After Music también existe como área normal:
+   - Tiene su propia página en /areas/after-music
+   - Contiene contenido detallado, galería y CTA
+   - Se accede haciendo clic en "Ver Sello" o desde la página de inicio
+
+─────────────────────────────────────────────────────────────────────────────
+
+4️⃣  EDITAR CONTENIDO DE CADA ÁREA (app/areas/[slug]/page.tsx)
+──────────────────────────────────────────────────────────────
+
+Este archivo usa un sistema de "areaContent" (objeto con toda la información).
+
+Estructura:
+
+   const areaContent = {
+     "animacion-3d": {
+       title: "Animación 3D",              ← Título en página
+       subtitle: "Movimiento & Efectos...", ← Subtítulo
+       description: "Desarrollo de...",   ← Descripción corta
+       fullDescription: "Creo...",        ← Descripción larga (párrafo completo)
+       gallery: [                         ← Array con 4 ítems de galería
+         "Animación de personajes",
+         "Efectos visuales complejos",
+         // ...
+       ],
+     },
+     "otra-area": { ... },
+   }
+
+ORDEN EN areaContent (ALFABÉTICO - 11 áreas + After Music):
+   1. "after-music"
+   2. "animacion-3d"
+   3. "creacion-videojuegos"
+   4. "diseno-sonoro"
+   5. "diseno-visual"
+   6. "diseno-web"
+   7. "fotografia"
+   8. "ilustraciones"
+   9. "modelado-3d"
+   10. "produccion-audiovisual"
+   11. "produccion-musical"
+   12. "videomapping"
+
+Para AGREGAR una nueva área a areaContent:
+   1. Copia un objeto completo (ejemplo: animacion-3d)
+   2. Cambia el KEY (id) para que coincida con el id de app/page.tsx
+   3. Edita title, subtitle, description, fullDescription
+   4. Cambia el array gallery con 4 elementos de tu trabajo
+   5. Inserta en ORDEN ALFABÉTICO
+   6. Automáticamente aparecerá cuando hagas clic en la tarjeta
+
+Para EDITAR contenido existente:
+   1. Busca el área por su ID (ej: "creacion-videojuegos")
+   2. Cambia los textos
+   3. Modifica el array gallery con tus proyectos
+
+Para ELIMINAR una área:
+   1. Elimina el objeto completo del areaContent
+   2. Elimina también el objeto del array specialties en app/page.tsx
+
+IMPORTANTE: El ID debe coincidir EXACTAMENTE entre:
+   - app/page.tsx (specialties array, propiedad "id")
+   - app/areas/[slug]/page.tsx (areaContent object keys)
+   - El orden DEBE SER ALFABÉTICO en ambos archivos
+
+─────────────────────────────────────────────────────────────────────────────
+
+5️⃣  EDITAR DISEÑO VISUAL (app/globals.css)
+──────────────────────────────────────────
+
+En app/globals.css encontrarás las variables CSS que controlan:
+
+✎ Colores:
+   --background       → Color de fondo principal (oscuro por defecto)
+   --foreground       → Color de texto principal
+   --primary          → Color principal (azul/violeta)
+   --accent           → Color de acento (naranja/rosa)
+   --border           → Color de bordes
+
+✎ Ejemplos de cambio:
+   Cambiar color primario: --primary: #color-nuevo;
+   Cambiar color de fondo: --background: #111111;
+
+✎ Gradientes:
+   Busca: .gradient-text y .gradient-background
+   Edita los valores de color en "from-" y "to-"
+
+✎ Animaciones:
+   Busca: .card-hover, .hover-glow
+   Edita duración y valores de transformación
+
+─────────────────────────────────────────────────────────────────────────────
+
+6️⃣  EDITAR INFORMACIÓN DE CONTACTO
+──────────────────────────────────
+
+Busca en app/areas/[slug]/page.tsx:
+
+   <a href="mailto:contact@israel.dev" className="...">
+
+Cambia: contact@israel.dev por tu email
+
+También en app/page.tsx, pie de página:
+   © 2025 Israel López Hernández
+
+Cambia: El nombre y año si es necesario
+
+─────────────────────────────────────────────────────────────────────────────
+
+═════════════════════════════════════════════════════════════════════════════
+
+🔄 FLUJO DE DATOS - Cómo funciona todo junto
+═════════════════════════════════════════════════════════════════════════════
+
+ORDEN DE SECCIONES EN LA PÁGINA:
+
+1. Header (Navegación sticky)
+2. Hero Section (Perfil con tu nombre, foto y stats)
+3. About Section (Información sobre ti)
+4. Specialties Section (Las 11 áreas con tarjetas)
+5. After Music Section (Tu sello destacado - AL FINAL)
+6. Footer
+
+Flujo de datos:
+
+1. app/page.tsx (Página de inicio)
+   ↓
+   → Contiene array "specialties" con 11 áreas en orden alfabético
+   → Cada área tiene: id, title, description, icon
+   → Sección especial "After Music" ahora está AL FINAL
+   ↓
+   → Renderiza componente <SpecialtyCard> por cada área
+   ↓
+   
+2. components/specialty-card.tsx (Tarjetas)
+   ↓
+   → Recibe data de specialties
+   → Muestra título, descripción, emoji
+   → Link a /areas/{id}
+   ↓
+
+3. app/areas/[slug]/page.tsx (Página dinámica)
+   ↓
+   → Lee el "slug" de la URL (ej: /areas/creacion-videojuegos)
+   → Busca coincidencia en objeto "areaContent" en orden alfabético
+   → Renderiza contenido de esa área
+   → Si no encuentra, muestra "Área no encontrada"
+   → After Music tiene su propia página con contenido especial
+
+═════════════════════════════════════════════════════════════════════════════
+
+✅ CHECKLIST DE TAREAS COMUNES
+═════════════════════════════════════════════════════════════════════════════
+
+☐ Cambiar nombre en página inicio → Editar app/page.tsx línea ~70
+☐ Cambiar foto de perfil → Reemplazar /public/professional-portrait...
+☐ Cambiar años de experiencia → app/page.tsx línea ~85
+☐ Cambiar número de proyectos → app/page.tsx línea ~91
+☐ Editar título de una área → app/page.tsx array specialties
+☐ Editar descripción de área → app/page.tsx array specialties
+☐ Cambiar emoji de área → app/page.tsx array specialties
+☐ Editar sección After Music → Buscar {/* After Music - Sello Especial */}
+☐ Editar descripción de After Music → app/areas/[slug]/page.tsx en areaContent["after-music"]
+☐ Agregar nuevo trabajo a galería → app/areas/[slug]/page.tsx gallery array
+☐ Cambiar email de contacto → app/areas/[slug]/page.tsx búsqueda "mailto:"
+☐ Cambiar colores del sitio → app/globals.css variables CSS
+☐ Cambiar animaciones/efectos → app/globals.css clases de animación
+☐ Agregar nueva área → Añadir en AMBOS archivos (page.tsx Y [slug]/page.tsx) en orden alfabético
+
+═════════════════════════════════════════════════════════════════════════════
+
+⚠️  NOTAS IMPORTANTES
+═════════════════════════════════════════════════════════════════════════════
+
+1. NUEVA ESTRUCTURA: After Music se movió al final de la página
+   ✓ Orden: Perfil → About → Specialties → After Music → Footer
+   ✓ Mantiene su diseño especial y destacado
+   ✓ Sigue teniendo su página completa en /areas/after-music
+
+2. CATEGORÍAS ACTUALES: 11 áreas principales + After Music
+   ✓ Todas en orden alfabético
+   ✓ Todas con página individual
+   ✓ After Music con sección especial en página principal
+
+3. IDs DEBEN SER: minúsculas, sin espacios, con guiones (ej: "creacion-videojuegos")
+
+4. ORDEN ALFABÉTICO: Importante mantener en AMBOS archivos:
+   - app/page.tsx specialties array
+   - app/areas/[slug]/page.tsx areaContent object
+
+5. CAMBIOS DE NOMBRE: Si cambias el "id" de un área, actualiza en AMBOS archivos
+
+6. FOTOS/IMÁGENES: Puedes agregar más imágenes en /public y usarlas
+
+7. COLORES: Verifica contraste de texto/fondo para accesibilidad
+
+8. BACKUP: Antes de cambios grandes, guarda copias de los archivos principales
+
+═════════════════════════════════════════════════════════════════════════════
+
+📋 CAMBIOS REALIZADOS RECIENTEMENTE
+═════════════════════════════════════════════════════════════════════════════
+
+✓ After Music MOVIDO AL FINAL de la página
+✓ Nuevo orden: Perfil → About → Specialties → After Music → Footer
+✓ Mantiene diseño especial y destacado
+✓ Sigue siendo página individual en /areas/after-music
+✓ Guía actualizada con nueva estructura
+
+═════════════════════════════════════════════════════════════════════════════
+
+¿PREGUNTAS? Consulta esta guía nuevamente o revisa el código comentado en
+los archivos principales. Cada sección está claramente identificada.
+
+═════════════════════════════════════════════════════════════════════════════
